@@ -171,7 +171,7 @@ const CreateLogin = () => {
         <RotateButton disabled={loading}>
           {loading ? <FaSpinner color="#FFF" size={14} /> : 'Create'}
         </RotateButton>
-        <Link to="/" exact>
+        <Link to="/login" exact>
           <RotateButton disabled={loading}>
             {loading ? <FaSpinner color="#FFF" size={14} /> : 'Cancel'}
           </RotateButton>

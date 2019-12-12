@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { FaSpinner } from 'react-icons/fa';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Exception } from 'handlebars';
+
+import history from '../../_config/history';
 import apiBase from '../../services/api';
 
 import { Form } from '../../components/Form';
@@ -10,9 +14,9 @@ import { Input } from '../../components/Input';
 import { PasswordInput } from '../../components/PasswordInput';
 import { StyledNotification } from '../../components/StyledNotification';
 
-import { CreateLoginLink } from './components/CreateLoginLink';
+import { CreateLoginLink } from '../components/CreateLoginLink';
 
-function Login() {
+const Login = () => {
   const [message, setMessage] = useState('');
   const [toaster, setToaster] = useState(false);
   const [error, setError] = useState(false);
@@ -35,23 +39,29 @@ function Login() {
       setError(true);
       return;
     }
-    setLoading(true);
-    await apiBase
-      .post(`/api/auth/signin`, {
+    try {
+      setLoading(true);
+      const response = await apiBase.post(`/api/auth/signin`, {
         usernameOrEmail: inputUsername,
         password: inputPassword,
-      })
-      .then(response => {
-        localStorage.setItem('token', response.data.accessToken);
-        setLoading(false);
-      })
-      .catch(() => {
-        setToaster(true);
-        setMessage('User might not exist. Use a valid login');
-        setLoading(false);
-        setError(true);
       });
+      if (response.status === 200) {
+        setToaster(false);
+        setError(false);
+        setLoading(false);
+        localStorage.setItem('token', response.data.accessToken);
+        history.history.push('/main');
+      } else {
+        throw Exception('Error during login request.');
+      }
+    } catch {
+      setToaster(true);
+      setMessage('User might not exist. Use a valid login');
+      setLoading(false);
+      setError(true);
+    }
   };
+
   return (
     <Container>
       <h1>Login page</h1>
@@ -80,6 +90,6 @@ function Login() {
       </CreateLoginLink>
     </Container>
   );
-}
+};
 
 export default Login;
