@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 
-import apiBase from '../../services/api';
-
 const Main = () => {
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+  }, []);
   return <div>Main</div>;
 };
 

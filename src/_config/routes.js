@@ -3,7 +3,7 @@ import { Switch, Redirect, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import Login from '../login/pages/index';
+import { Login } from '../login/pages/index';
 import CreateLogin from '../createlogin/pages/index';
 import Main from '../main/pages/index';
 
