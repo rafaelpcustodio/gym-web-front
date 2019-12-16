@@ -4,7 +4,7 @@ const Container = styled.div`
   max-width: 800px;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
   padding: 30px;
   margin: 50px auto;
 
@@ -12,9 +12,9 @@ const Container = styled.div`
     list-style: none;
   }
 
-  h1 {
-    text-align: center;
-    color: #f1a46f;
+  div {
+    display: flex;
+    left: 50px;
   }
 `;
 

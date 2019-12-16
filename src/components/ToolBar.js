@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
-  max-width: 800px;
+const ToolBar = styled.div`
+  width: 100%;
   background: #fff;
-  border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  padding: 30px;
-  margin: 50px auto;
+  height: 38.5px;
 
   li {
     list-style: none;
@@ -18,4 +16,4 @@ const Container = styled.div`
   }
 `;
 
-export { Container };
+export { ToolBar };

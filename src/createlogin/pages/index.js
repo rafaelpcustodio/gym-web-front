@@ -91,7 +91,7 @@ const CreateLogin = () => {
       }
 
       await apiBase
-        .post(`/api/auth/signup`, {
+        .post(`/auth/signup`, {
           name: inputName,
           email: inputEmail,
           username: inputUserName,

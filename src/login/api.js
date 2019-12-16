@@ -24,12 +24,11 @@ const loginAPI = async (
       password: inputPassword,
     });
     if (response.status === 200) {
-      console.log(response);
       setToaster(false);
       setError(false);
       setLoading(false);
       localStorage.setItem('token', response.data.accessToken);
-      // history.history.push('/main');
+      history.history.push('/main');
     } else {
       throw Exception('Error during login request.');
     }
