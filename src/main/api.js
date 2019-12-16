@@ -4,7 +4,8 @@ import moment from 'moment';
 import apiBase from '../services/api';
 
 const api = async (token, userId) => {
-  const dateNow = moment().format('YYYY-MM-DD');
+  // alterar aqui para dateNow
+  const dateNow = moment().format('2019-12-15');
   try {
     let response = [];
     if (dateNow) {
@@ -23,6 +24,7 @@ const api = async (token, userId) => {
         },
       });
     }
+    console.log(response);
     if (response.status === 200 && response.data !== undefined) {
       console.log(response.data);
       return response.data;

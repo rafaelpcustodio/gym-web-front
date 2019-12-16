@@ -19,7 +19,6 @@ const Main = () => {
       setExercises(exercisesReturned);
     }
   }, []);
-
   return (
     <>
       <ToolBar />

@@ -1,15 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const InfoExercise = ({ exercise }) => {
   return (
-    <>
-      <li>{exercise.name}</li>
-      <li>{exercise.weight}</li>
-      <li>{exercise.series}</li>
-      <li>{exercise.group}</li>
-      <li>{exercise.level}</li>
-    </>
+    <div>
+      <li>{`Exercício: ${exercise.name}`}</li>
+      <li>{`Peso: ${exercise.weight} kg`}</li>
+      <li>{`Séries: ${exercise.series} ciclos`}</li>
+      <li>{`Grupo muscular: ${exercise.group}`}</li>
+      <li>{`Nível de dificuldade: ${exercise.level}`}</li>
+    </div>
   );
+};
+
+InfoExercise.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  exercise: PropTypes.object.isRequired,
 };
 
 export default InfoExercise;
