@@ -6,7 +6,6 @@ const Button = styled.button`
   border-radius: 10px;
   color: #fff;
   padding: 10px 15px;
-  margin-top: 2rem;
   margin: 2rem 2rem;
   width: 100px;
   &[disabled] {

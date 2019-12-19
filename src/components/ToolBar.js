@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FiLogOut } from 'react-icons/fi';
 
-import history from '../_config/history';
+import DatePicker from 'react-datepicker';
+import { LogoutButton } from './LogoutButton';
+import { UserInfo } from './UserInfo';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 const StyledToolBar = styled.div`
   align-items: center;
@@ -13,35 +16,47 @@ const StyledToolBar = styled.div`
   padding: 5px 5px;
   width: 100%;
   button {
-    align-items: center;
     border: 1px solid #eee;
     border-radius: 10px;
     float: right;
   }
+  input {
+    border-radius: 4px;
+    box-shadow: inset 0 2px 2px #e9e9e9;
+    border: 1px solid #ff6544;
+    font-size: 13px;
+    line-height: 25px;
+    padding-left: 10px;
+    width: 184px;
+  }
 `;
 
-const LogoutText = styled.div`
-  align-items: center;
-  color: #ff6544;
+const DateText = styled.div`
+  background-color: #eee;
+  border-radius: 4px;
   display: inline-block;
-  float: right;
   font-weight: bold;
-  justify-content: center;
-  padding: 5px;
+  color: #ff6544;
+  margin-left: 5.5rem;
+  margin-right: 0.5rem;
 `;
 
 const ToolBar = () => {
-  const handleLogout = () => {
-    localStorage.clear();
-    history.history.push('/login');
+  const [date, setDate] = useState(new Date());
+  const handleDate = dateReceived => {
+    setDate(dateReceived);
   };
 
   return (
     <StyledToolBar>
-      <button onClick={handleLogout} type="button">
-        <LogoutText>Logout</LogoutText>
-        <FiLogOut size={24} color="#ff6544" />
-      </button>
+      <UserInfo />
+      <DateText>Data: </DateText>
+      <DatePicker
+        selected={date}
+        onChange={handleDate}
+        dateFormat="MMMM d, yyyy h:mm aa"
+      />
+      <LogoutButton />
     </StyledToolBar>
   );
 };

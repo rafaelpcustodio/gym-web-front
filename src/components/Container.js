@@ -7,11 +7,9 @@ const Container = styled.div`
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   padding: 30px;
   margin: 50px auto;
-
   li {
     list-style: none;
   }
-
   h1 {
     text-align: center;
     color: #f1a46f;
