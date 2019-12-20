@@ -26,6 +26,7 @@ const Main = () => {
     const { sub } = tokenSolved;
     const exercisesReturned = await api(token, sub, selectedDate);
     if (exercisesReturned !== undefined) {
+      console.log(exercises);
       setExercises(exercisesReturned);
     }
   };
@@ -40,7 +41,6 @@ const Main = () => {
   };
 
   const deleteSelectedExercise = async exerciseId => {
-    console.log(exerciseId);
     const token = localStorage.getItem('token');
     const tokenSolved = parseJwt(token);
     const { sub } = tokenSolved;
@@ -50,11 +50,12 @@ const Main = () => {
       token,
       moment(date).format('YYYY-MM-DD')
     );
-    const exerciseFound = exercises.find(
-      exercise => exercise.id === exerciseId
-    );
-    const index = exercises.indexOf(exerciseFound);
-    exercises.splice(index, 1);
+    const index = exercises.findIndex(exercise => exercise.id === exerciseId);
+    if (index !== -1) {
+      setExercises(currentExercise =>
+        currentExercise.filter((exercise, i) => index !== i)
+      );
+    }
   };
 
   const handleCreateExercise = e => {
