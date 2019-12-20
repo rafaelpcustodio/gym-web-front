@@ -8,8 +8,9 @@ const LogoutText = styled.div`
   color: #ff6544;
   float: right;
   font-weight: bold;
+  font-size: 14px;
   justify-content: center;
-  padding: 5px;
+  padding: 2px;
 `;
 
 const LogoutButton = () => {

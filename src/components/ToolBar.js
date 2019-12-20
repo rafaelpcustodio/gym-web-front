@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 
 import DatePicker from 'react-datepicker';
 import { LogoutButton } from './LogoutButton';
@@ -26,7 +27,7 @@ const StyledToolBar = styled.div`
     border: 1px solid #ff6544;
     font-size: 13px;
     line-height: 25px;
-    padding-left: 10px;
+    padding-left: 5px;
     width: 184px;
   }
 `;
@@ -35,16 +36,18 @@ const DateText = styled.div`
   background-color: #eee;
   border-radius: 4px;
   display: inline-block;
+  font-size: 14px;
   font-weight: bold;
   color: #ff6544;
   margin-left: 5.5rem;
   margin-right: 0.5rem;
 `;
 
-const ToolBar = () => {
-  const [date, setDate] = useState(new Date());
+const ToolBar = ({ date, setDate, handleFilterExerciseByDate }) => {
   const handleDate = dateReceived => {
+    console.log(dateReceived);
     setDate(dateReceived);
+    handleFilterExerciseByDate(moment(dateReceived).format('YYYY-MM-DD'));
   };
 
   return (

@@ -3,9 +3,7 @@ import { Exception } from 'handlebars';
 import moment from 'moment';
 import apiBase from '../services/api';
 
-const api = async (token, userId) => {
-  // alterar aqui para dateNow
-  const dateNow = moment().format('2019-12-15');
+const api = async (token, userId, dateNow = moment().format('YYYY-MM-DD')) => {
   try {
     let response = [];
     if (dateNow) {
@@ -24,9 +22,7 @@ const api = async (token, userId) => {
         },
       });
     }
-    console.log(response);
     if (response.status === 200 && response.data !== undefined) {
-      console.log(response.data);
       return response.data;
     }
     throw Exception('Error during login request.');
@@ -36,4 +32,28 @@ const api = async (token, userId) => {
   return [];
 };
 
-export default api;
+const deleteRequest = async (userId, exerciseId, token, selectedDate) => {
+  try {
+    let response = [];
+    response = await apiBase.delete(
+      `/users/${userId}/exercises/${exerciseId}`,
+      {
+        params: {
+          date: selectedDate,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (response.status === 200 && response.data !== undefined) {
+      return response.data;
+    }
+    throw Exception('Error during login request.');
+  } catch {
+    console.log('error');
+  }
+  return [];
+};
+
+export { api, deleteRequest };

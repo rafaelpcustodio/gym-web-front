@@ -6,6 +6,7 @@ const StyledUserInfo = styled.div`
   border-radius: 5px;
   color: #ff6544;
   display: inline-block;
+  font-size: 14px;
   font-weight: bold;
 `;
 

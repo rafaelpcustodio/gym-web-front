@@ -7,6 +7,7 @@ const CreateExerciseButton = styled.button`
   border-radius: 25px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   color: #ff6544;
+  font-size: 14px;
   height: 35px;
   margin-top: 50px;
   margin-bottom: 5px;

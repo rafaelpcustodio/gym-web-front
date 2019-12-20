@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 import { Form } from '../../components/Form';
 import { Container } from '../components/Container';
-import { Input } from '../../components/Input';
 
 const CreateExercise = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const handleExerciseCreate = async e => {
     e.preventDefault();
   };
+  console.log(dropdownOpen);
+  const toggle = () => setDropdownOpen(prevState => !prevState);
   return (
-    <>
-      <Container>
-        {' '}
-        <h1>Create your exercise</h1>
-        <Form onSubmit={handleExerciseCreate}>
-          <Input placeholder="Complete Name*" />
-        </Form>
-      </Container>
-    </>
+    <Container>
+      {' '}
+      <Form onSubmit={handleExerciseCreate}>
+        <Dropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
+          <DropdownToggle caret>Dropright</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </Form>
+    </Container>
   );
 };
 
