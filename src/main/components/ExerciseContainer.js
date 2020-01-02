@@ -6,7 +6,7 @@ const ExerciseContainer = styled.div`
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   display: flex;
-  max-height: 200px;
+  max-height: 1000px;
   padding: 30px;
   max-width: 800px;
   margin-bottom: 30px;

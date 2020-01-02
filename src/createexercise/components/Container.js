@@ -12,17 +12,8 @@ const Container = styled.div`
   margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10px;
+  margin-top: 100px;
 
-  div {
-    display: inline-block;
-    padding: 20px 20px;
-    li {
-      line-height: 16px;
-      list-style: none;
-      padding: 5px;
-      font-weight: bold;
-    }
   }
 `;
 

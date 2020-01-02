@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
+import styled from 'styled-components';
 import moment from 'moment';
 import { api, deleteRequest } from '../api';
 import { parseJwt } from '../../utils/function';
 import history from '../../_config/history';
 
+import logo from '../../assets/imgs/magma-logo.png';
 import DeleteButton from '../components/DeleteButton';
 import { ExerciseContainer } from '../components/ExerciseContainer';
 import { ToolBar } from '../../components/ToolBar';
@@ -13,6 +15,13 @@ import InfoExercise from '../components/InfoExercise';
 import CreateExerciseButton from '../components/CreateExerciseButton';
 import MainContainer from '../components/MainContainer';
 
+const NoExerciseText = styled.div`
+  color: #ff6544;
+  font-weight: bold;
+  font-size: 14px;
+  justify-content: center;
+`;
+
 const Main = () => {
   const [exercises, setExercises] = useState([]);
   const [date, setDate] = useState(new Date());
@@ -20,13 +29,11 @@ const Main = () => {
   const filterExercises = async (
     selectedDate = moment().format('YYYY-MM-DD')
   ) => {
-    console.log(selectedDate);
     const token = localStorage.getItem('token');
     const tokenSolved = parseJwt(token);
     const { sub } = tokenSolved;
     const exercisesReturned = await api(token, sub, selectedDate);
     if (exercisesReturned !== undefined) {
-      console.log(exercises);
       setExercises(exercisesReturned);
     }
   };
@@ -36,7 +43,6 @@ const Main = () => {
   }, []);
 
   const handleFilterExerciseByDate = async selectedDate => {
-    console.log(selectedDate);
     filterExercises(selectedDate);
   };
 
@@ -89,7 +95,12 @@ const Main = () => {
           })
         ) : (
           <ExerciseContainer>
-            Opa parece que você não possui exercícios nesse dia. Vamos criar um?
+            <NoExerciseText>{`Parece que você não possui exercícios na data ${moment(
+              date
+            ).format(
+              'DD/MM/YYYY'
+            )}. Que tal criar alguns exercícios?`}</NoExerciseText>
+            <img src={logo} alt="magma" height="250" width="250" />
           </ExerciseContainer>
         )}
       </MainContainer>
