@@ -8,7 +8,7 @@ import {
 
 import { Form } from '../../components/Form';
 import { Container } from '../components/Container';
-import exercises from '../../constants/exercises';
+import { EXERCISES_TYPE } from '../../constants/exercises';
 
 const CreateExercise = () => {
   const handleExerciseCreate = async e => {
@@ -18,14 +18,14 @@ const CreateExercise = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
-  console.log(exercises);
+  console.log(EXERCISES_TYPE);
   return (
     <Container>
       <Form onSubmit={handleExerciseCreate}>
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle caret>Choose your exercise</DropdownToggle>
           <DropdownMenu right />
-          {exercises.map(exercise => (
+          {EXERCISES_TYPE.map(exercise => (
             <DropdownItem>{exercise}</DropdownItem>
           ))}
         </Dropdown>
