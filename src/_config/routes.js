@@ -5,8 +5,7 @@ import { Provider } from 'react-redux';
 
 import { Login } from '../login/pages/index';
 import CreateLogin from '../createlogin/pages/index';
-import CreateExercise from '../createexercise/pages/index';
-import Main from '../main/pages/index';
+import UserRoutes from './roles/UserRoutes';
 
 import history from './history';
 import { store } from './store';
@@ -15,11 +14,7 @@ const Routes = () => (
   <Provider store={store}>
     <BrowserRouter history={history}>
       {localStorage.getItem('token') !== null ? (
-        <Switch>
-          <Route path="/main" exact component={Main} />
-          <Route path="/exercises/create" exact component={CreateExercise} />
-          <Redirect to="/main" exact component={Main} />
-        </Switch>
+        <UserRoutes />
       ) : (
         <Switch>
           <Route path="/login/create" exact component={CreateLogin} />
